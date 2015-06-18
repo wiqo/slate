@@ -2,167 +2,378 @@
 title: API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+  - Requires
 
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
 
 search: true
 ---
 
-# Introduction
+# Security Testing
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+## dashboard
+`
+url: '/dashboard',
+templateUrl: "views/dashboard.html",
+controller: DashboardCtrl
+`
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+```
+DirectConvo._id
+DirectConvo.msgs.length
+DirectConvo.msgs[i].re[i].fullname
+DirectConvo.msgs[i].from.fullname
+DirectConvo.msgs[i].timestamp
+DirectConvo.timestamp
+DirectConvo.msgs[i].subject
+DirectConvo.msgs[i].text
+person.profile.imageUrl
+person.relation.type
+person.profile.prefs
+person._id
+person.relation.type
+Entry.displayTime
+Entry.creator
+Entry.data.text
+Entry.effective
+Event.start
+Event.start
+Event.timeLeft
+Event.topic
+Event.description
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
 
-```python
-import kittn
+# Organizations
 
-api = kittn.authorize('meowmeowmeow')
+## org.members
+`
+url: "/{org}/members",
+templateUrl: "views/org.html",
+controller: OrgMembersCtrl
+`
+
+```
+org.title
+org.pro
+org.patient
+person.relation.title
+person.relation.status
+person.profile.prefs.fullname
+person.profile.prefs.phone
+org.members.pro
+org.membershipRequests.pending
+org.membership.status
+org.membership.admin
+org.permissions
+org.listing
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+## org.current
+`
+url: "/current",
+templateUrl: "views/org.html",
+controller: OrgCtrl
+`
+
+```
+org.title
+org.membership.status
+org.pro
+org.listing
+org._id
+org.profile.imageUrl
+person.relation.title
+person.relation.status
+person.profile.prefs.fullname
+person.profile.prefs.address
+person.profile.prefs.phone
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+# Mailbox
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+## mailbox.inbox.home
+`
+url: '',
+templateUrl: 'views/mail_list.html',
+controller: DirectMsgInboxCtrl
+`
 
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```
+DirectConvo._id
+DirectConvo.msgs.length
+DirectConvo.msgs[i]
+DirectConvo.msgs[i].from
+DirectConvo.msgs[i].from._id
+DirectConvo.msgs[i].from.profile.prefs.fullname
+DirectConvo.msgs[i].re[i]._id
+DirectConvo.msgs[i].re[i].fullname
+DirectConvo.msgs[i].subject
+DirectConvo.msgs[i].text
+DirectConvo.msgs[i].timestamp
+DirectConvo.msgs[i].reads
+DirectConvo.msgs[i].attachments
 ```
 
-```python
-import kittn
+## mailbox.inbox.view
+`
+url: '/{id}',
+templateUrl: 'views/mail_detail.html',
+controller: DirectMsgViewCtrl
+`
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+```
+DirectConvo.msgs[i].from._id
+DirectConvo.msgs[i].to[i].value._id
+DirectConvo._id
+DirectConvo.msgs
+DirectConvo.msgs[i].from.profile.prefs.fullname
+DirectConvo.msgs[i].subject
+DirectConvo.msgs[i].text
+DirectConvo.msgs[i].re
+DirectConvo.msgs[i].re.length
+DirectConvo.msgs[i].re[i]._id
+DirectConvo.msgs[i].re[i].profile.prefs.fullname
+DirectConvo.msgs[i].timestamp
+DirectConvo.msgs[i].attachments
+DirectConvo.msgs[i].tags
 ```
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+## mailbox.inbox.view
+`
+url: '/{id}',
+templateUrl: 'views/mail_detail.html',
+controller: DirectMsgViewCtrl
+`
+
+```
+DirectConvo.msgs[i].from._id
+DirectConvo.msgs[i].to[i].value._id
+DirectConvo._id
+DirectConvo.msgs
+DirectConvo.msgs[i].from.profile.prefs.fullname
+DirectConvo.msgs[i].subject
+DirectConvo.msgs[i].text
+DirectConvo.msgs[i].re
+DirectConvo.msgs[i].re.length
+DirectConvo.msgs[i].re[i]._id
+DirectConvo.msgs[i].re[i].profile.prefs.fullname
+DirectConvo.msgs[i].timestamp
+DirectConvo.msgs[i].attachments
+DirectConvo.msgs[i].tags
 ```
 
-> The above command returns JSON structured like this:
+## mailbox.sent.home
+`
+url: '',
+templateUrl: 'views/mail_list.html',
+controller: DirectMsgInboxCtrl
+`
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+```
+DirectConvo._id
+DirectConvo.msgs.length
+DirectConvo.msgs[i]
+DirectConvo.msgs[i].from
+DirectConvo.msgs[i].from._id
+DirectConvo.msgs[i].from.profile.prefs.fullname
+DirectConvo.msgs[i].re[i]._id
+DirectConvo.msgs[i].re[i].fullname
+DirectConvo.msgs[i].subject
+DirectConvo.msgs[i].text
+DirectConvo.msgs[i].timestamp
+DirectConvo.msgs[i].reads
+DirectConvo.msgs[i].attachments
 ```
 
-This endpoint retrieves all kittens.
+## mailbox.sent.view
+`
+url: '/{id}',
+templateUrl: 'views/mail_detail.html',
+controller: DirectMsgViewCtrl
+`
 
-### HTTP Request
-
-`GET http://example.com/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+```
+DirectConvo.msgs[i].from._id
+DirectConvo.msgs[i].to[i].value._id
+DirectConvo._id
+DirectConvo.msgs
+DirectConvo.msgs[i].from.profile.prefs.fullname
+DirectConvo.msgs[i].subject
+DirectConvo.msgs[i].text
+DirectConvo.msgs[i].re
+DirectConvo.msgs[i].re.length
+DirectConvo.msgs[i].re[i]._id
+DirectConvo.msgs[i].re[i].profile.prefs.fullname
+DirectConvo.msgs[i].timestamp
+DirectConvo.msgs[i].attachments
+DirectConvo.msgs[i].tags
 ```
 
-```python
-import kittn
+## mailbox.archive.home
+`
+url: '',
+templateUrl: 'views/mail_list.html',
+controller: DirectMsgInboxCtrl
+`
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+```
+DirectConvo._id
+DirectConvo.msgs.length
+DirectConvo.msgs[i]
+DirectConvo.msgs[i].from
+DirectConvo.msgs[i].from._id
+DirectConvo.msgs[i].from.profile.prefs.fullname
+DirectConvo.msgs[i].re[i]._id
+DirectConvo.msgs[i].re[i].fullname
+DirectConvo.msgs[i].subject
+DirectConvo.msgs[i].text
+DirectConvo.msgs[i].timestamp
+DirectConvo.msgs[i].reads
+DirectConvo.msgs[i].attachments
 ```
 
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
+## mailbox.archive.view
+`
+url: '/{id}',
+templateUrl: 'views/mail_detail.html',
+controller: DirectMsgViewCtrl
+`
+
+```
+DirectConvo.msgs[i].from._id
+DirectConvo.msgs[i].to[i].value._id
+DirectConvo._id
+DirectConvo.msgs
+DirectConvo.msgs[i].from.profile.prefs.fullname
+DirectConvo.msgs[i].subject
+DirectConvo.msgs[i].text
+DirectConvo.msgs[i].re
+DirectConvo.msgs[i].re.length
+DirectConvo.msgs[i].re[i]._id
+DirectConvo.msgs[i].re[i].profile.prefs.fullname
+DirectConvo.msgs[i].timestamp
+DirectConvo.msgs[i].attachments
+DirectConvo.msgs[i].tags
 ```
 
-> The above command returns JSON structured like this:
+## mailbox.email_compose
 
-```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+`
+url: "/email_compose",
+templateUrl: "views/mail_compose.html",
+Controller: DirectMsgComposeCtrl
+`
+```
+Person._id
+Person.profile.prefs.fullname
+DirectConvo.msgs[i].re[i]._id
+DirectConvo.msgs[i].re
+DirectConvo.msgs[i].subject
+DirectConvo.msgs[i].to[i].value._id
+DirectConvo.msgs[i].to
+DirectConvo.msgs[i].text
+DirectConvo.msgs[i].attachments
+Person.profile.imageUrl
+Person.profile.prefs.fullname
+Person._id
 ```
 
-This endpoint retrieves a specific kitten.
+## mailbox.email.template
+`
+url: "/email_template",
+templateUrl: "views/email_template.html",
+Controller: None
+`
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+# Invite
 
-### HTTP Request
+## invite.compose
+`
+url: "/compose",
+templateUrl: "views/referral_compose.html",
+Controller: InviteComposeCtrl
+`
 
-`GET http://example.com/kittens/<ID>`
+```
+Person._id
+Person.profile.imageUrl
+Person.profile.prefs.fullname
+Person.profile.prefs.email
+```
 
-### URL Parameters
+## invite.inbox
+`
+url: '/inbox',
+templateUrl: 'views/invites.html',
+Controller: InviteInboxCtrl
+`
 
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
+```
+Person.profile.prefs.fullname
+// request Schema from personSchema:
+request._id
+request.source
+request.source.profiles.prefs.fullname
+request.subject.profile.prefs.fullname
+request.timestamp
+// membershipRequest Schema from orgSchema:
+membershipRequest._id
+membershipRequest.org._id
+membershipRequest.source.profile.prefs.fullname
+membershipRequest.org.profile.prefs.fullname
+membershipRequest.source
 
+```
+## invite.user
+`
+url: '/user/{id}',
+templateUrl: 'views/invite_view.html',
+controller: InviteViewCtrl
+`
+
+```
+Person._id
+Person.profile.prefs
+Person.profile.prefs.fullname
+```
+
+## invite.request
+`
+url: '/request/{id}',
+templateUrl: 'views/invite_view.html',
+controller: ThirdPartyInviteViewCtrl
+`
+
+```
+// request Schema from personSchema:
+request._id
+request.source.profile.prefs
+request.source.profile.prefs.fullname
+request.text
+request.subject.profile.prefs
+request.subject.profile.prefs.fullname
+request.timestamp
+request.attachments
+request.attachments[i].fileId
+request.attachments[i].filename
+request.attachments[i].timestamp
+```
+
+
+
+
+
+
+
+
+
+
+
+## patientRecordControl
+
+`
+url: '/dashboard',
+templateUrl: "views/dashboard.html",
+controller: DashboardCtrl
+`
