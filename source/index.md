@@ -40,7 +40,6 @@ Event.start
 Event.timeLeft
 Event.topic
 Event.description
-
 ```
 
 # Organizations
@@ -53,19 +52,17 @@ controller: OrgMembersCtrl
 `
 
 ```
-org.title
-org.pro
-org.patient
-person.relation.title
-person.relation.status
-person.profile.prefs.fullname
-person.profile.prefs.phone
-org.members.pro
-org.membershipRequests.pending
-org.membership.status
-org.membership.admin
-org.permissions
-org.listing
+Org.profile.prefs.fullname
+Org.members
+Org.members.patient
+Org.members.pro
+Org.membershipRequests.pending
+Org.permissions
+Person.relation.title
+Person.profile.prefs.fullname
+Person.profile.prefs.address
+Person.profile.prefs.phone
+
 ```
 
 ## org.current
@@ -76,17 +73,12 @@ controller: OrgCtrl
 `
 
 ```
-org.title
-org.membership.status
-org.pro
-org.listing
-org._id
-org.profile.imageUrl
-person.relation.title
-person.relation.status
-person.profile.prefs.fullname
-person.profile.prefs.address
-person.profile.prefs.phone
+Org.members
+Org.profile.imageUrl
+Org.relation.title
+Org.progile.prefs.fullname
+Org.profile.prefs.address
+Org.profile.prefs.phone
 ```
 
 
@@ -264,6 +256,7 @@ url: "/email_compose",
 templateUrl: "views/mail_compose.html",
 Controller: DirectMsgComposeCtrl
 `
+
 ```
 Person._id
 Person.profile.prefs.fullname
@@ -278,13 +271,6 @@ Person.profile.imageUrl
 Person.profile.prefs.fullname
 Person._id
 ```
-
-## mailbox.email.template
-`
-url: "/email_template",
-templateUrl: "views/email_template.html",
-Controller: None
-`
 
 # Invite
 
@@ -375,16 +361,7 @@ membershipRequest.source.profile.prefs
 membershipRequest.source.profile.prefs.fullname
 ```
 
-## calendar
-`
-url: "/calendar",
-templateUrl: "views/calendar.html",
-Controller: CalendarCtrl
-`
-
-```
-
-```
+# Events
 
 ## events.event-list
 `
@@ -392,6 +369,7 @@ url: "/list",
 templateUrl: "views/events-list.html",
 Controller: EventListController
 `
+
 ```
 Event.start
 Event.timeLeft
@@ -407,12 +385,16 @@ url: "/list",
 templateUrl: "views/events-list.html",
 Controller: EventListController
 `
+
 ```
 Person.profile.prefs.fullname
 // Event being an array of events:
 Event.length
 Event[i].start
 Event[i].end
+```
+
+# Network Connections
 
 ## network.connections
 `
@@ -430,4 +412,3 @@ Person.connections.patients.connected.length
 Person.profile.imageUrl
 ```
 
-## login
