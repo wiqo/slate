@@ -329,7 +329,7 @@ membershipRequest.source
 `
 url: '/user/{id}',
 templateUrl: 'views/invite_view.html',
-controller: InviteViewCtrl
+Controller: InviteViewCtrl
 `
 
 ```
@@ -342,7 +342,7 @@ Person.profile.prefs.fullname
 `
 url: '/request/{id}',
 templateUrl: 'views/invite_view.html',
-controller: ThirdPartyInviteViewCtrl
+Controller: ThirdPartyInviteViewCtrl
 `
 
 ```
@@ -360,20 +360,74 @@ request.attachments[i].filename
 request.attachments[i].timestamp
 ```
 
-
-
-
-
-
-
-
-
-
-
-## patientRecordControl
-
+## invite.org
 `
-url: '/dashboard',
-templateUrl: "views/dashboard.html",
-controller: DashboardCtrl
+url: '/org/{org}/membership-request/{id}',
+templateUrl: 'views/membership_request_view.html',
+Controller: MembershipRequestViewCtrl
 `
+```
+Org._id
+Org.profile.prefs.fullname
+// membershipRequest Schema from OrgSchema:
+membershipRequest._id
+membershipRequest.source.profile.prefs
+membershipRequest.source.profile.prefs.fullname
+```
+
+## calendar
+`
+url: "/calendar",
+templateUrl: "views/calendar.html",
+Controller: CalendarCtrl
+`
+
+```
+
+```
+
+## events.event-list
+`
+url: "/list",
+templateUrl: "views/events-list.html",
+Controller: EventListController
+`
+```
+Event.start
+Event.timeLeft
+Event.subject
+Event.topic
+Event.description
+```
+
+
+## events.event-book
+`
+url: "/list",
+templateUrl: "views/events-list.html",
+Controller: EventListController
+`
+```
+Person.profile.prefs.fullname
+// Event being an array of events:
+Event.length
+Event[i].start
+Event[i].end
+
+## network.connections
+`
+url: "/connections",
+templateUrl: "views/connections.html",
+Controller: ConnectionsCtrl
+`
+
+```
+// Person being an array of persons:
+Person._id
+Person.profile.prefs.fullname
+Person.connections.pro.connected.length
+Person.connections.patients.connected.length
+Person.profile.imageUrl
+```
+
+## login
