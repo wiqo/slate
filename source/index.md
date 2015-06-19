@@ -131,29 +131,6 @@ DirectConvo.msgs[i].attachments
 DirectConvo.msgs[i].tags
 ```
 
-## mailbox.inbox.view
-`
-url: '/{id}',
-templateUrl: 'views/mail_detail.html',
-controller: DirectMsgViewCtrl
-`
-
-```
-DirectConvo.msgs[i].from._id
-DirectConvo.msgs[i].to[i].value._id
-DirectConvo._id
-DirectConvo.msgs
-DirectConvo.msgs[i].from.profile.prefs.fullname
-DirectConvo.msgs[i].subject
-DirectConvo.msgs[i].text
-DirectConvo.msgs[i].re
-DirectConvo.msgs[i].re.length
-DirectConvo.msgs[i].re[i]._id
-DirectConvo.msgs[i].re[i].profile.prefs.fullname
-DirectConvo.msgs[i].timestamp
-DirectConvo.msgs[i].attachments
-DirectConvo.msgs[i].tags
-```
 
 ## mailbox.sent.home
 `
@@ -259,17 +236,9 @@ Controller: DirectMsgComposeCtrl
 
 ```
 Person._id
-Person.profile.prefs.fullname
-DirectConvo.msgs[i].re[i]._id
-DirectConvo.msgs[i].re
-DirectConvo.msgs[i].subject
-DirectConvo.msgs[i].to[i].value._id
-DirectConvo.msgs[i].to
-DirectConvo.msgs[i].text
-DirectConvo.msgs[i].attachments
 Person.profile.imageUrl
 Person.profile.prefs.fullname
-Person._id
+Person.profile.prefs.email
 ```
 
 # Invite
