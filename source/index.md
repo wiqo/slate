@@ -352,6 +352,7 @@ url: '/org/{org}/membership-request/{id}',
 templateUrl: 'views/membership_request_view.html',
 Controller: MembershipRequestViewCtrl
 `
+
 ```
 Org._id
 Org.profile.prefs.fullname
