@@ -71,7 +71,6 @@ Event.start
 Event.timeLeft
 Event.topic
 Event.description
-
 </code></pre>
 
 <h1 id="organizations">Organizations</h1>
@@ -83,19 +82,17 @@ url: &quot;/{org}/members&quot;,
 templateUrl: &quot;views/org.html&quot;,
 controller: OrgMembersCtrl
 </code></p>
-<pre class="highlight plaintext"><code>org.title
-org.pro
-org.patient
-person.relation.title
-person.relation.status
-person.profile.prefs.fullname
-person.profile.prefs.phone
-org.members.pro
-org.membershipRequests.pending
-org.membership.status
-org.membership.admin
-org.permissions
-org.listing
+<pre class="highlight plaintext"><code>Org.profile.prefs.fullname
+Org.members
+Org.members.patient
+Org.members.pro
+Org.membershipRequests.pending
+Org.permissions
+Person.relation.title
+Person.profile.prefs.fullname
+Person.profile.prefs.address
+Person.profile.prefs.phone
+
 </code></pre>
 
 <h2 id="org.current">org.current</h2>
@@ -105,17 +102,12 @@ url: &quot;/current&quot;,
 templateUrl: &quot;views/org.html&quot;,
 controller: OrgCtrl
 </code></p>
-<pre class="highlight plaintext"><code>org.title
-org.membership.status
-org.pro
-org.listing
-org._id
-org.profile.imageUrl
-person.relation.title
-person.relation.status
-person.profile.prefs.fullname
-person.profile.prefs.address
-person.profile.prefs.phone
+<pre class="highlight plaintext"><code>Org.members
+Org.profile.imageUrl
+Org.relation.title
+Org.progile.prefs.fullname
+Org.profile.prefs.address
+Org.profile.prefs.phone
 </code></pre>
 
 <h1 id="mailbox">Mailbox</h1>
@@ -284,9 +276,8 @@ DirectConvo.msgs[i].tags
 url: &quot;/email_compose&quot;,
 templateUrl: &quot;views/mail_compose.html&quot;,
 Controller: DirectMsgComposeCtrl
-</code>
-<code class="prettyprint">
-Person._id
+</code></p>
+<pre class="highlight plaintext"><code>Person._id
 Person.profile.prefs.fullname
 DirectConvo.msgs[i].re[i]._id
 DirectConvo.msgs[i].re
@@ -298,15 +289,7 @@ DirectConvo.msgs[i].attachments
 Person.profile.imageUrl
 Person.profile.prefs.fullname
 Person._id
-</code></p>
-
-<h2 id="mailbox.email.template">mailbox.email.template</h2>
-
-<p><code class="prettyprint">
-url: &quot;/email_template&quot;,
-templateUrl: &quot;views/email_template.html&quot;,
-Controller: None
-</code></p>
+</code></pre>
 
 <h1 id="invite">Invite</h1>
 
@@ -351,7 +334,7 @@ membershipRequest.source
 <p><code class="prettyprint">
 url: &#39;/user/{id}&#39;,
 templateUrl: &#39;views/invite_view.html&#39;,
-controller: InviteViewCtrl
+Controller: InviteViewCtrl
 </code></p>
 <pre class="highlight plaintext"><code>Person._id
 Person.profile.prefs
@@ -363,7 +346,7 @@ Person.profile.prefs.fullname
 <p><code class="prettyprint">
 url: &#39;/request/{id}&#39;,
 templateUrl: &#39;views/invite_view.html&#39;,
-controller: ThirdPartyInviteViewCtrl
+Controller: ThirdPartyInviteViewCtrl
 </code></p>
 <pre class="highlight plaintext"><code>// request Schema from personSchema:
 request._id
@@ -379,13 +362,68 @@ request.attachments[i].filename
 request.attachments[i].timestamp
 </code></pre>
 
-<h2 id="patientrecordcontrol">patientRecordControl</h2>
+<h2 id="invite.org">invite.org</h2>
 
 <p><code class="prettyprint">
-url: &#39;/dashboard&#39;,
-templateUrl: &quot;views/dashboard.html&quot;,
-controller: DashboardCtrl
+url: &#39;/org/{org}/membership-request/{id}&#39;,
+templateUrl: &#39;views/membership_request_view.html&#39;,
+Controller: MembershipRequestViewCtrl
+</code>
+<code class="prettyprint">
+Org._id
+Org.profile.prefs.fullname
+// membershipRequest Schema from OrgSchema:
+membershipRequest._id
+membershipRequest.source.profile.prefs
+membershipRequest.source.profile.prefs.fullname
 </code></p>
+
+<h1 id="events">Events</h1>
+
+<h2 id="events.event-list">events.event-list</h2>
+
+<p><code class="prettyprint">
+url: &quot;/list&quot;,
+templateUrl: &quot;views/events-list.html&quot;,
+Controller: EventListController
+</code></p>
+<pre class="highlight plaintext"><code>Event.start
+Event.timeLeft
+Event.subject
+Event.topic
+Event.description
+</code></pre>
+
+<h2 id="events.event-book">events.event-book</h2>
+
+<p><code class="prettyprint">
+url: &quot;/list&quot;,
+templateUrl: &quot;views/events-list.html&quot;,
+Controller: EventListController
+</code></p>
+<pre class="highlight plaintext"><code>Person.profile.prefs.fullname
+// Event being an array of events:
+Event.length
+Event[i].start
+Event[i].end
+</code></pre>
+
+<h1 id="network-connections">Network Connections</h1>
+
+<h2 id="network.connections">network.connections</h2>
+
+<p><code class="prettyprint">
+url: &quot;/connections&quot;,
+templateUrl: &quot;views/connections.html&quot;,
+Controller: ConnectionsCtrl
+</code></p>
+<pre class="highlight plaintext"><code>// Person being an array of persons:
+Person._id
+Person.profile.prefs.fullname
+Person.connections.pro.connected.length
+Person.connections.patients.connected.length
+Person.profile.imageUrl
+</code></pre>
 
       </div>
       <div class="dark-box">
